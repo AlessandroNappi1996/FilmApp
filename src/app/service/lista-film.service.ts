@@ -22,4 +22,7 @@ export class ListaFilmService {
   deleteFilm(id:number){
   return this.http.delete<any>(`${environment.apiUrl}/Film/Delete?ID=${id}` , )
   }
+  modificaFilm(film:any){
+    return this.http.post<any>(`${environment.apiUrl}/Film/AddEdit` , film)
+  }
 }
