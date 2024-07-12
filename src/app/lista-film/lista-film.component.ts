@@ -46,16 +46,8 @@ export class ListaFilmComponent implements OnInit {
     this.files.push(...event.addedFiles);
     console.warn(this.files)
     
-    // this.fileUp = this.files[0]
-    // if(!this.files[0]){
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: "Attenzione! La dimensione massima dell'immagine è 2 MB!",
-    //     confirmButtonColor: "#343f71"
-    //   })
-    // }
+   
 
-    // this.getBase64()
     this.fileUp = this.files[0];
 
         //CONVERTE DA FILE IMMAGINE A B64
@@ -75,16 +67,8 @@ export class ListaFilmComponent implements OnInit {
     this.files.push(...event.addedFiles);
     console.warn(this.files)
     
-    // this.fileUp = this.files[0]
-    // if(!this.files[0]){
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: "Attenzione! La dimensione massima dell'immagine è 2 MB!",
-    //     confirmButtonColor: "#343f71"
-    //   })
-    // }
+    
 
-    // this.getBase64()
     this.fileUp = this.files[0];
 
     //CONVERTE DA FILE IMMAGINE A B64
@@ -180,21 +164,7 @@ eliminaFilm(id: number){
 
 
 
-//   handleUpload(event) {
-//     const file = event.target.files[0];
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = () => {
-//         console.log(reader.result);
-//     };
-// }
-//   onUpload(event) {
-//     for(let file of event.files) {
-//         this.uploadedFiles.push(file);
-//     }
 
-//     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-// }
 
   getListaFilm(){
     console.log(this.filtroData , 'filtrodata');

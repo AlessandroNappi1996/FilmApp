@@ -49,11 +49,7 @@ body {font-family: "Lato", sans-serif}
       <h2 class="w3-wide w3-center">OGGI AL CINEMA</h2>
       <p class="w3-opacity w3-center"><i>Ricordati di prenotare i tuoi biglietti!</i></p><br>
 
-      <!-- <ul class="w3-ul w3-border w3-white w3-text-grey">
-        <li class="w3-padding">September <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-        <li class="w3-padding">October <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-        <li class="w3-padding">November <span class="w3-badge w3-right w3-margin-right">3</span></li>
-      </ul> -->
+      
       <br>
       <div style="display: flex; justify-content: space-between;">
       <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Aggiungi Film"></p-button>
@@ -72,7 +68,6 @@ body {font-family: "Lato", sans-serif}
         <!-- <input class="form-control mr-sm-2" [(ngModel)]="regista" type="search" placeholder="Search" aria-label="Search"> -->
         <button style="width: 100%; margin-top: 1% !important;" class=" btn btn-outline-primary my-2 my-sm-0"  (click)="getAllFiltri()" type="submit">Applica filtri</button>
       <!-- </div> -->
-      <!-- <p-calendar formControlName="dataUscita" dateFormat="dd/mm/yy" inputId="basic"></p-calendar> -->
     </div>
       <div  class="w3-row-padding w3-padding-32" style="margin:0 -16px">
         <div *ngFor="let film of films" class="w3-third w3-margin-bottom">
@@ -125,9 +120,7 @@ body {font-family: "Lato", sans-serif}
                   
                 </div>
 
-                <!-- <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+                
 
                     
                     
@@ -175,15 +168,12 @@ body {font-family: "Lato", sans-serif}
                       <label>Data uscita<span class="text-danger">*</span></label>
                       <input type="datetime-local" pInputText formControlName="dataUscita">
 
-                      <!-- <p-calendar formControlName="dataUscita" dateFormat="dd/mm/yy" inputId="basic"></p-calendar> -->
                     </div>
                       
                   
                 </div>
 
-                <!-- <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+                
 
                     
                     
@@ -206,24 +196,7 @@ body {font-family: "Lato", sans-serif}
             </p-dialog>
           </div>
         </div>
-        <!-- <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Paris</b></p>
-            <p class="w3-opacity">Sat 28 Nov 2016</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-          </div>
-        </div> -->
-        <!-- <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>San Francisco</b></p>
-            <p class="w3-opacity">Sun 29 Nov 2016</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-          </div>
-        </div> -->
+        
       </div>
     </div>
   </div>
