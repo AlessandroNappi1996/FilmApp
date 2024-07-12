@@ -89,33 +89,53 @@ body {font-family: "Lato", sans-serif}
   <!-- The Tour Section -->
   <div class="w3-black" id="tour">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-      <h2 class="w3-wide w3-center">TOUR DATES</h2>
-      <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p><br>
+      <h2 class="w3-wide w3-center">OGGI AL CINEMA</h2>
+      <p class="w3-opacity w3-center"><i>Ricordati di prenotare i tuoi biglietti!</i></p><br>
 
-      <ul class="w3-ul w3-border w3-white w3-text-grey">
+      <!-- <ul class="w3-ul w3-border w3-white w3-text-grey">
         <li class="w3-padding">September <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
         <li class="w3-padding">October <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
         <li class="w3-padding">November <span class="w3-badge w3-right w3-margin-right">3</span></li>
-      </ul>
+      </ul> -->
       <br>
+      <div style="display: flex; justify-content: space-between;">
       <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Aggiungi Film"></p-button>
+      <nav class="navbar navbar-light ">
+        <div class="form-inline">
+          <input class="form-control mr-sm-2" [(ngModel)]="regista" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary my-2 my-sm-0"  (click)="getFiltroRegista()" type="submit">Search</button>
+        </div>
+        
+      </nav>   
+     </div>
 
+     <div class="p-fluid">
+      <label>Data uscita<span class="text-danger">*</span></label>
+      <input type="date" pInputText [(ngModel)]="filtroData">
+      <div class="form-inline">
+        <input class="form-control mr-sm-2" [(ngModel)]="regista" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0"  (click)="getFiltroData()" type="submit">Search</button>
+      </div>
+      <!-- <p-calendar formControlName="dataUscita" dateFormat="dd/mm/yy" inputId="basic"></p-calendar> -->
+    </div>
       <div  class="w3-row-padding w3-padding-32" style="margin:0 -16px">
         <div *ngFor="let film of films" class="w3-third w3-margin-bottom">
-          <img src="{{film.locandina}}" alt="New York" style="width:100%" class="w3-hover-opacity">
+          <img src="{{film.locandina}}" alt="New York" style="width:100%; height: 20rem;" class="w3-hover-opacity">
           <div class="w3-container w3-white">
             <p><b>{{film.titolo}}</b></p>
             <p class="w3-opacity">{{film.dataUscita | date: 'dd/MM/yyyy'}}</p>
-            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+            <p>(Descrizione) Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
             <!-- <button class="w3-button w3-black w3-margin-bottom" (click)="showDialog()" label="Show" >Buy Tickets</button> -->
-             <div style="display: flex;">
-            <p-button class="col-6" (click)="showModalModifica(film)" icon="pi pi-external-link" label="Modifica"></p-button>
-            <button (click)="eliminaFilm(film.id)" class="col-6 w3-button w3-black w3-margin-bottom" >Elimina</button>
+             <div style="display: flex; justify-content: space-between; margin-top: 4%;">
+              <button (click)="showModalModifica(film)" class="w3-button w3-black w3-margin-bottom" >Modifica</button>
+
+            <!-- <p-button class="" (click)="showModalModifica(film)" icon="pi pi-external-link" label="Modifica"></p-button> -->
+            <button (click)="eliminaFilm(film.id)" class="w3-button w3-black w3-margin-bottom" >Elimina</button>
           </div>
 
           <!-- AGGIUNGI -->
-            <p-dialog header="Header" [(visible)]="modale" [modal]="true" [style]="{width: '50vw'}"
-                [draggable]="false" [resizable]="false">
+            <p-dialog header="Aggiungi Film" [(visible)]="modale" [modal]="true" [style]="{width: '50vw'}"
+                [draggable]="false" [resizable]="false" [closable]="false">
                 <form [formGroup]="form">
                   <div style="display: flex !important; justify-content: space-between;" >
 
@@ -142,16 +162,11 @@ body {font-family: "Lato", sans-serif}
                     <div class="p-fluid">
                       <label>Data uscita<span class="text-danger">*</span></label>
                       <!-- <p-calendar formControlName="dataUscita" dateFormat="dd/mm/yy" inputId="basic"></p-calendar> -->
-                      <input type="date" pInputText formControlName="dataUscita">
+                      <input type="datetime-local" pInputText formControlName="dataUscita">
 
                     </div>
                       
                   
-                  <div class="">
-                  <!-- <ng-template pTemplate="footer"> -->
-                    <p-button (click)="aggiungiFilm()" icon="pi pi-check" (click)="modale=false" label="Ok" styleClass="p-button-text"></p-button>
-                    <!-- </ng-template> --> 
-                  </div>
                 </div>
 
                 <!-- <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -161,15 +176,22 @@ body {font-family: "Lato", sans-serif}
                     
                     
                   </div>
-                  
+                  <div style="display:flex ; justify-content: space-between;">
+                    <div>
+                      <p-button (click)="aggiungiFilm()" icon="pi pi-check" (click)="modale=false" label="Ok" styleClass="p-button-text"></p-button>
+                    </div>
+                    <div>
+                        <p-button (click)="annulla()" icon="pi pi-check" (click)="modale=false" label="Annulla" styleClass="p-button-text"></p-button>
+                      </div>
+                   </div>
                 </form>
                 
             </p-dialog>
 
 
             <!-- MODIFICA -->
-            <p-dialog header="Header" [(visible)]="modaleModifica" [modal]="true" [style]="{width: '50vw'}"
-                [draggable]="false" [resizable]="false">
+            <p-dialog header="Modifica Film" [(visible)]="modaleModifica" [modal]="true" [style]="{width: '50vw'}"
+                [draggable]="false" [resizable]="false" [closable]="false">
                 <form [formGroup]="form">
                   <div style="display: flex !important; justify-content: space-between;" >
 
@@ -201,11 +223,6 @@ body {font-family: "Lato", sans-serif}
                     </div>
                       
                   
-                  <div class="">
-                  <!-- <ng-template pTemplate="footer"> -->
-                    <p-button (click)="modificaFilm()" icon="pi pi-check" (click)="modale=false" label="Ok" styleClass="p-button-text"></p-button>
-                    <!-- </ng-template> --> 
-                  </div>
                 </div>
 
                 <!-- <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -215,7 +232,19 @@ body {font-family: "Lato", sans-serif}
                     
                     
                   </div>
-                  
+                  <div style="display: flex; justify-content: space-between;">
+
+                    <div >
+                      <p-button (click)="modificaFilm()" icon="pi pi-check" (click)="modale=false" label="Ok" styleClass="p-button-text"></p-button>
+                    </div>
+
+                    <div>
+                      <!-- <ng-template pTemplate="footer"> -->
+                        <p-button (click)="annulla()" icon="pi pi-check" (click)="modale=false" label="Annulla" styleClass="p-button-text"></p-button>
+                        <!-- </ng-template> --> 
+                      </div>
+                    
+                    </div>
                 </form>
                 
             </p-dialog>

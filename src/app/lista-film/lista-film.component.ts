@@ -19,6 +19,8 @@ export class ListaFilmComponent implements OnInit {
   form! : FormGroup
   modaleModifica : boolean = false
   idModifica!: number;
+  regista!: string
+  filtroData!: Date;
 
 
   constructor(
@@ -119,6 +121,8 @@ export class ListaFilmComponent implements OnInit {
         // footer: '<a href="#">Why do I have this issue?</a>'
       });
     }
+    this.files=[]
+    this.fileUp= undefined
     })
     
   }
@@ -191,9 +195,27 @@ eliminaFilm(id: number){
 // }
 
   getListaFilm(){
+    
     this.listaFilmSrv.getAllFilm().subscribe(data =>{
       console.log(data);
       this.films = data      
+    })
+  }
+
+  getFiltroRegista(){
+    console.log(this.regista);
+    
+    this.listaFilmSrv.filtroFilmRegista(this.regista).subscribe(data =>{
+      console.log(data);
+      this.films = data
+    })
+  }
+  getFiltroData(){
+    console.log(this.filtroData);
+    
+    this.listaFilmSrv.filtroFilmData(this.filtroData).subscribe(data =>{
+      console.log(data);
+      this.films = data
     })
   }
 
@@ -324,5 +346,12 @@ modificaFilm(){
   console.log(data);
 
   })
+}
+
+
+annulla(){
+  this.modaleModifica= false
+  this.files=[]
+  this.fileUp= undefined
 }
 }

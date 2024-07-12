@@ -17,7 +17,17 @@ p {
     min-width: 6rem;
     // margin-left: 80%;
     margin-bottom: 1%;
-    margin-left: 72%;
+}
+
+.button-search {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+}
+
+font{
+    font-family: "Lato", sans-serif
 }
 
 // :host ::ng-deep .p-dialog{

@@ -25,4 +25,10 @@ export class ListaFilmService {
   modificaFilm(film:any){
     return this.http.post<any>(`${environment.apiUrl}/Film/AddEdit` , film)
   }
+  filtroFilmRegista(regista : string){
+    return this.http.get<any>(`${environment.apiUrl}/Film/List?Regista=${regista}`)
+  }
+  filtroFilmData(data : Date){
+    return this.http.get<any>(`${environment.apiUrl}/Film/List?dataUscita=${data}`)
+  }
 }
