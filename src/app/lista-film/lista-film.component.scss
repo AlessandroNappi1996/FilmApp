@@ -30,6 +30,11 @@ font{
     font-family: "Lato", sans-serif
 }
 
+ngx-dropzone-image-preview > img {
+    width: 100% !important; 
+  
+  }
+
 // :host ::ng-deep .p-dialog{
 //     width: 80%;
 // }

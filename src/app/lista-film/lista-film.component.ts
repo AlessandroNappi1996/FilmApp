@@ -19,8 +19,8 @@ export class ListaFilmComponent implements OnInit {
   form! : FormGroup
   modaleModifica : boolean = false
   idModifica!: number;
-  regista!: string
-  filtroData!: Date;
+  regista: string = ""
+  filtroData: any = "";
 
 
   constructor(
@@ -160,6 +160,8 @@ eliminaFilm(id: number){
           icon: "success"
   
         });
+        this.files=[]
+        this.fileUp= undefined
         this.getListaFilm()
       } else {
         Swal.fire({
@@ -195,6 +197,9 @@ eliminaFilm(id: number){
 // }
 
   getListaFilm(){
+    console.log(this.filtroData , 'filtrodata');
+    console.log(this.regista , 'regista');
+    
     
     this.listaFilmSrv.getAllFilm().subscribe(data =>{
       console.log(data);
@@ -202,18 +207,14 @@ eliminaFilm(id: number){
     })
   }
 
-  getFiltroRegista(){
-    console.log(this.regista);
-    
-    this.listaFilmSrv.filtroFilmRegista(this.regista).subscribe(data =>{
-      console.log(data);
-      this.films = data
-    })
-  }
-  getFiltroData(){
-    console.log(this.filtroData);
-    
-    this.listaFilmSrv.filtroFilmData(this.filtroData).subscribe(data =>{
+
+
+
+  getAllFiltri(){
+    console.warn(this.regista , 'regista');
+    console.warn(this.filtroData, 'data del filtro');
+  
+    this.listaFilmSrv.getFiltri(this.regista , this.filtroData).subscribe(data =>{
       console.log(data);
       this.films = data
     })
@@ -234,22 +235,6 @@ eliminaFilm(id: number){
 
 
 
-// dataURItoBlob(base644:any) {
-//   const byteString = window.atob(this.filmB64);
-//   console.log(byteString);
-  
-//   const arrayBuffer = new ArrayBuffer(byteString.length);
-//   const int8Array = new Uint8Array(arrayBuffer);
-//   for (let i = 0; i < byteString.length; i++) {
-//     int8Array[i] = byteString.charCodeAt(i);
-//   }
-//   const blob = new Blob([int8Array], { type: 'image/png' });    
-//   console.log(blob);
-
-//   return blob;
-
-  
-// }
 
 
 
@@ -260,6 +245,7 @@ showModalModifica(film:any) {
   // this.files = []
   // this.fileUp = undefined
   console.log(film);
+  this.fileUp = film.locandina
   // CONVERTE BASE64 A FILE IMMAGINE PER VEDERE IN ANTEPRIMA L IMMAGINE CHE DOBBIAMO MODIFICARE
   const imageName = "name.png";
   const imageBlob = this.dataURItoBlob_new(film.locandina);
@@ -269,26 +255,16 @@ showModalModifica(film:any) {
 //
 
   // this.files.push(film.locandina)
+console.log(this.fileUp);
 
   console.log(this.files);
   
-  // this.filmB64= film.locandina
 
   console.log(this.filmB64);
   
   
   this.form.patchValue(film)             
   
-//   const base64 = film.locandina;
-// const imageName = 'name.png';
-// const imageBlob = this.dataURItoBlob(base64);
-// const imageFile = new File([imageBlob], imageName, { type: 'image/png' });
-
-
-  // this.files.push(film.locandina) 
-  // console.log(this.files , 'FILES');
-  //   console.log(this.fileUp , 'FILEUP');
-
   
   this.idModifica = film.id
   console.log(this.idModifica);
@@ -298,6 +274,8 @@ showModalModifica(film:any) {
   //   console.log(data);
     
   // })
+  console.log(this.fileUp);
+  
 }
 
 
@@ -329,6 +307,7 @@ newData : Date | undefined
 
 
 modificaFilm(){
+  console.log(this.fileUp , 'file up che si leva');
 
 
   let obj = {
@@ -341,11 +320,41 @@ modificaFilm(){
   }
 
   console.log(obj);
+  Swal.fire({
+    title: "Sicuro di voler modificare questo film?",
+    showDenyButton: true,
+    // showCancelButton: true,
+    confirmButtonText: "Conferma",
+    denyButtonText: `Annulla`
+  }).then((result) => {
+    
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      this.listaFilmSrv.modificaFilm(obj).subscribe(data=>{
+        console.log(data);
+      if(data=true){
+        Swal.fire("Modifica effettuata!", "", "success");
+        this.getListaFilm()
+        this.files=[]
+        this.fileUp= undefined
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Qualcosa è andato storto!",
+        });
+      }
+        })
+      // Swal.fire("Modifica effettuata!", "", "success");
+    } 
+    else {
+      console.log( ' vai?');
+      
+      this.files=[]
+      this.fileUp= undefined
+    }
+  });
   
-  this.listaFilmSrv.modificaFilm(obj).subscribe(data=>{
-  console.log(data);
-
-  })
 }
 
 

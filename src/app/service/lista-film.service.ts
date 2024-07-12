@@ -31,4 +31,7 @@ export class ListaFilmService {
   filtroFilmData(data : Date){
     return this.http.get<any>(`${environment.apiUrl}/Film/List?dataUscita=${data}`)
   }
+  getFiltri(regista: string , data : Date){
+    return this.http.get<any>(`${environment.apiUrl}/Film/List?Regista=${regista}&DataUscita=${data}`)
+  }
 }
